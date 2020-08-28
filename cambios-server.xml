@@ -1,0 +1,12 @@
+		<!-- Se ha cambiado en Servers/Tomcat v8.5 Server at localhost-config/server.xml la etiqueta Context:
+		<Context docBase="bloc" path="/bloc" reloadable="true" source="org.eclipse.jst.jee.server:bloc"/>
+      	 -->
+      	 
+      	 <Context docBase="bloc" path="/bloc" privileged="true"
+			reloadable="true" source="org.eclipse.jst.jee.server:bloc">
+			<Resource auth="Container" driverClassName="org.postgresql.Driver"
+				maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/notasfast"
+				password="dit" type="javax.sql.DataSource" 
+				url="jdbc:postgresql://127.0.0.1:5432/notasfast"
+				username="dit" />
+		</Context>
