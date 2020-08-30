@@ -33,6 +33,7 @@ public class ObtenerNotaServlet extends HttpServlet {
 		String mensajeUrlImagen ="";
 		String mensajeCategoria = "";
 		String mensajeColor = "";
+		String mensajeTitulo = "";
 		int mensajeId = 0;
 	    NotasDAO notas = (NotasDAO) getServletContext().getAttribute("notas");
 		Nota nota = null;
@@ -50,6 +51,7 @@ public class ObtenerNotaServlet extends HttpServlet {
 				mensajeCategoria = nota.getCategoria();
 				mensajeColor = nota.getColor();
 				mensajeId = nota.getId();
+				mensajeTitulo = nota.getTitulo();
 			}
 
 		} catch (DAOException e) {
@@ -63,7 +65,8 @@ public class ObtenerNotaServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().println("{ \"nota\":\"" + mensajeNota + "\" , \"imagen\":\"" + 
-		mensajeUrlImagen + "\", \"error\":\"" + mensajeError + "\"  , \"categoria\":\"" + 
+		mensajeUrlImagen + "\" , \"titulo\":\"" + 
+				mensajeTitulo + "\", \"error\":\"" + mensajeError + "\"  , \"categoria\":\"" + 
 		mensajeCategoria + "\" , \"color\":\"" + mensajeColor + "\" , \"id\":\"" + mensajeId + "\"}");
 	
 	}

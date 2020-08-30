@@ -15,8 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="../css/estilo.css" />
 	<script src="js/listarnotas.js"></script>
 	<script src="js/crearnota.js"></script>
+	<script src="js/editarnota.js"></script>
 </head>
-<body>
+
+
+<body onload="obtenerNota(<%=notas.obtener(Integer.parseInt(request.getQueryString()), usuario.getNombre()).getId()%>)">
 	<jsp:include page="cabecera.jsp" />
 	
 	<% // Código HTML + JSP  
@@ -29,8 +32,9 @@
 		try {
 			// el nombre de usuario se obtiene del atributo de sesión usuario
 			nota.setNombreUsuario(usuario.getNombre());
-			if ( !notas.insertar(nota) ) {
-				mensajeError = "No se ha podido insertar la nota";
+			nota.setId(Integer.parseInt(request.getQueryString()));
+			if ( !notas.actualizar(nota) ) {
+				mensajeError = "No se ha podido editar la nota";
 			}
 	
 		} catch (DAOException e) {
@@ -45,74 +49,27 @@
 			</p></div>
 		<%
 		} else { %>
-			<div id="exito"><p> INFO: NOTA CREADA</p></div>
+			<div id="exito"><p> INFO: NOTA EDITADA</p></div>
 	<%
 		}
 	} 
 	//mostramos formulario
 	%>
 
-
-	<div id="crear">
+	<div id="editar">
 		<h1>Editar nota</h1>
-		<div id="formcrear">
+		<div id="formeditar">
 			<form method="post" action="">
-			<div class="titulo-div">
-				<label for="titulo"><strong>T&iacute;tulo de la nota</strong></label>
-				<input id="titulo" type="text" value="" name="titulo" maxlength="100"
-					required="required"></input>
-			</div>
-			<div class="imagen-div">
-				<label for="urlimagen"><strong>URL de la imagen</strong></label>
-				<input id="urlimagen" type="text" value="" name="urlimagen"></input>
-			</div>
-			<div class="categoria-div">
-				<strong class="campo">Categor&iacute;a</strong>
-				<select id="sel-cat" name="categoria" onchange="cambiarFondoNota(this.value)">
-				<%
-				List<String> categorias = notas.obtenerCategorias(usuario.getNombre());
-				for (String categoria:categorias){
-					if(categoria!=null){
-				%>
-				<option value="<%=categoria%>"><%=categoria %></option>
-				<%	
-					}
-				}						
-				%>
-				</select>
-				<button id="mas-cat" onclick="nuevaCategoria()">+</button>
-			</div>
-			<div class="color-div">			
-				<strong class="campo">Color</strong>
-				<select id="sel-color" name="color" onchange="cambiarFondoNota(this.value)">
-				<%
-				List<String> colores = notas.obtenerColores(usuario.getNombre());
-				for (String color:colores){
-					if (color!=null){
-				%>
-				<option value="<%=color%>"><%=color%></option>
-				<%	
-					}
-				}						
-				%>
-				</select>
-				+
-				<input id="color-picker" type="color" oninput="verFondoNota(this.value)" onchange="updateColor(this.value)"></input>				
-			</div>	
-			<div class="nota-div">
-				<label for="nota"><strong>Nota</strong></label>
-				<textarea id="nota" name="nota" cols="100%" rows="100%"></textarea>
-			</div>	
+			<%@include file="formularionota.jsp"%>	
 			<input class="boton" id="guardar" type="submit" value="Guardar" name="enviarnota"></input>
-			<input class="boton" id="recargar" type="reset" value="Regargar Datos Guardados" name="limpiar"></input>		
-			</form>
-			
+			<input class="boton" id="recargar" type="reset" value="Regargar Datos Guardados" name="limpiar"
+			onclick="obtenerNota(<%=notas.obtener(Integer.parseInt(request.getQueryString()), usuario.getNombre()).getId()%>)"></input>		
+			</form>			
 		</div>
 		</br>
-		<a class="boton" id="volver" href="listarnotas.jsp">VOLVER A LA LISTA</a>	
+		<a class="boton" id="volver" href="listarnotas.jsp">Volver a la lista</a>	
 	</div>
 	
-
 	<%@include file="../pie.jsp"%>
   </body>
 </html>

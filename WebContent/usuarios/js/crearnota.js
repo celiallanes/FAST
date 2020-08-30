@@ -20,7 +20,7 @@ function cambiarFondoNota(color){
 	var nota = document.getElementById("nota");
 	nota.style.backgroundColor = color;	
 	var picker = document.getElementById("color-picker");
-	picker.setAttribute("value", color)
+	picker.value=color;
 }
 
 function verFondoNota(color){
@@ -38,5 +38,12 @@ function nuevaCategoria(){
 	sel_cat.appendChild(new_option);
 };
 
+
+function color_picker(color){
+	var picker = document.getElementById("color-picker");
+	picker.value = color;
+};
+
 var cont = 1;
+
 

@@ -86,7 +86,7 @@ a img {
     margin-top: 4px;
 }
 
-#bienvenida, #menu, #crear,  #lista {
+#bienvenida, #menu, #crear,  #lista, #editar {
 	clear: both;
 	text-align: center;
 	margin-left: auto;
@@ -97,8 +97,8 @@ a img {
 	padding-top: 10%;
 }
 
-#crear,  #lista{
-	padding-top: 4%;
+#crear,  #lista, #editar{
+	padding-top: 2%;
 	width: 75%;
 }
 
@@ -123,32 +123,32 @@ a img {
 	list-style: none;
 }
 
-#formcrear {
+#formcrear, #formeditar{
 	border: 2px solid #a55;
 	color: #a55;
 	background-color: white;
 }
 
-#formcrear form {
+#formcrear form, #formeditar form {
 	padding-top: 4%;
 	width: 75%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#formcrear label,.color-div,.categoria-div {
+#formcrear label,.color-div,.categoria-div, #formeditar label{
 	display: block;
 	text-align: left;
 	font-weight: bold;
 	margin-top: 10px;
 }
 
-#formcrear input[type="text"] {
+#formcrear input[type="text"], #formeditar input[type="text"]{
 	height: 20px;
 	width: 100%;
 }
 
-#formcrear .boton {
+#formcrear .boton, #formeditar .boton, #volver {
 	font-weight: bold;
 	margin: 10px;
 	padding: 10px;
@@ -210,7 +210,22 @@ a img {
 	margin: 14px;
 }
 
+.enlaceeditar{
+	color: white;
+}
 
+#lista-div{
+  	max-height: 330px;
+  	overflow: auto;
+}
 
+#formcrear, #formeditar{
+	max-height: 332px;
+  	overflow: auto;
+}
+
+#volver{
+	margin-top: 1.5em;
+}
 
 

@@ -421,4 +421,45 @@ public class NotasDAO {
 		return  tabla;
 	}
 	
+	/**
+	 * Actualiza los campos de una nota.
+	 * Los campos que ya tienen datos son: nombre_usuario, titulo, nota, urlimagen
+	 * El campo id lo genera el SGBBDD
+	 * @param nota
+	 * @return true si se ha insertado o false si no
+	 * @throws DAOException
+	 */
+	public boolean actualizar(Nota nota) throws DAOException {
+		Connection conn;
+		boolean resultado=false;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "UPDATE notas SET (titulo, nota, urlimagen, categoria, color)=(?,?,?,?,?) WHERE (nombre_usuario=? AND id=?)";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, nota.getTitulo());
+			st.setString(2, nota.getNota());
+			st.setString(3, nota.getUrlimagen());
+			st.setString(4, nota.getCategoria());
+			st.setString(5, nota.getColor());
+			st.setString(6, nota.getNombreUsuario());
+			st.setInt(7, nota.getId());
+			
+			System.out.println("Se va a actualizar la nota del usuario="+nota.getNombreUsuario());
+			int contador = st.executeUpdate();
+			if (contador == 1) {
+				System.out.println("Se ha actualizado la nota del usuario="+nota.getNombreUsuario());
+				resultado=true;
+			}
+			st.close();
+			conn.close();	
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error de acceso a la base de datos. NotasDAO.");
+			throw (new DAOException("Error en actualizar(nota) de NotasDAO"));
+		}
+		return resultado;
+	}	
+	
 }

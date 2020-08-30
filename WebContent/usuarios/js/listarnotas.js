@@ -26,7 +26,7 @@ function mostrarDetalle(elemento, objetoDetalle) {
 					"<img src='"+objetoDetalle.imagen+"' alt='Sin imagen' /><br />" + 
 				"</div>" + 
 				"<button class='boton' onclick='borrar(event, ultid);'>Borrar</button>" +
-				"<button class='boton' onclick='editar(event, ultid);'><a href='editarnota.jsp' target='_blank'>Editar<a></editar>";
+				"<button class='boton'><a class='enlaceeditar' href='editarnota.jsp?"+ objetoDetalle.id +"'>Editar</a></button>";
 		colorFondoNota(objetoDetalle.color, objetoDetalle.id);
 	}
 }
@@ -135,7 +135,7 @@ function borrar_seleccionadas(){
 	for ( i=0; i<notas.length; i++){
 		if (notas[i].checked){
 			seleccionada = true;
-			lista_borrar.push(notas[i].id.substring(5,6));			
+			lista_borrar.push(notas[i].id.split("-")[1]);			
 		}		
 	}
 	if (seleccionada)
@@ -144,8 +144,7 @@ function borrar_seleccionadas(){
 		alert("No se ha seleccionado ninguna nota");
 	if (borrar_control){
 		for (i =0 ; i<lista_borrar.length; i++){
-			borrar(null, lista_borrar[i]);
-			
+			borrar(null, lista_borrar[i]);	
 		}
 		
 	}		
