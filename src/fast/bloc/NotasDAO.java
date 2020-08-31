@@ -90,21 +90,14 @@ public class NotasDAO {
 		return resultado;
 	}
 	
-	//Accede a la BBDD y devuelve la nota que coincide con id
+	/**
+	 * Accede a la BBDD y devuelve la nota que coincide con id
+	 * @param id
+	 * @return nota ccon todos los campos o null si no se encuentra
+	 * @throws DAOException
+	 */
 	public Nota obtener(int id) throws DAOException {
-		//TODO pruebas
-		/*Nota ejemplo = new Nota();
-		ejemplo.setId(id);
-		ejemplo.setNombreUsuario("usuario");
-		ejemplo.setNota("Esta es una nota de ejemplo.");
-		ejemplo.setTitulo("Título de la nota");
-		ejemplo.setUrlimagen("imagenes/nota.png");
-		ejemplo.setCategoria("trabajo"); //t1
-		ejemplo.setColor("#FFFFFF"); //t1
 		
-		return ejemplo;
-		*/
-		//Tarea 2
 		Nota nota = null;
 		Connection conn;
 		
@@ -142,7 +135,7 @@ public class NotasDAO {
 	 * Obtiene una nota que coincida con (id,usuario)
 	 * @param id
 	 * @param usuario
-	 * @return nota con esa pareja (id,usuario) o null si no se encuentra
+	 * @return nota con todos los campos null si no se encuentra
 	 * @throws DAOException
 	 */
 	public Nota obtener(int id, String usuario) throws DAOException {
@@ -178,6 +171,47 @@ public class NotasDAO {
 			throw (new DAOException("Error en obtener(id,usuario) de NotasDAO"));
 		}
 		return nota;
+	}
+	
+	/**
+	 * Obtiene 
+	 * @param id
+	 * @return nota con todos los campos null si no se encuentra
+	 * @throws DAOException
+	 */
+	public List<Nota>obtener(String usuario) throws DAOException {
+		List<Nota> lista = new ArrayList<>();
+		Connection conn;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "SELECT * FROM notas WHERE nombre_usuario=?";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, usuario);
+			ResultSet rs = st.executeQuery();
+			System.out.println("Se van a buscar las notas del usuario="+usuario);
+			while (rs.next()) {
+				Nota nota = new Nota();
+				nota.setId(rs.getInt(1)); 
+				nota.setNombreUsuario(rs.getString(2));
+				nota.setTitulo(rs.getString(3));
+				nota.setNota(rs.getString(4));
+				nota.setUrlimagen(rs.getString(5));
+				nota.setCategoria(rs.getString(6)); //t1
+				nota.setColor(rs.getString(7)); //t1
+				System.out.println("Se ha encontrado la nota con id="+nota.getId());
+				lista.add(nota);
+			}
+			rs.close();
+			st.close();
+			conn.close();	
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error de acceso a la base de datos. NotasDAO.");
+			throw (new DAOException("Error en obtener(id,usuario) de NotasDAO"));
+		}
+		return lista;
 	}
 	
 	/**
@@ -296,7 +330,7 @@ public class NotasDAO {
 	public List<String> obtenerCategorias(String usuario) {
 		List<String> lista = new ArrayList<>();
 		Connection conn;
-		
+			
 		try {
 			conn = ds.getConnection();
 			String sql = "SELECT categoria FROM notas WHERE nombre_usuario=?";
@@ -307,7 +341,8 @@ public class NotasDAO {
 			while (rs.next()) {
 				String categoria = rs.getString(1);
 				System.out.println("Se ha encontrado la nota con categoria="+categoria);
-				lista.add(categoria);
+				if(!lista.contains(categoria))
+						lista.add(categoria);
 			}
 			rs.close();
 			st.close();

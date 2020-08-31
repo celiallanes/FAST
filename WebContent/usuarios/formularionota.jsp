@@ -10,34 +10,34 @@
 			<div class="categoria-div">
 				<strong class="campo">Categor&iacute;a</strong>
 				<select id="sel-cat" name="categoria" onchange="cambiarFondoNota(this.value)" >
-				<option class="color" selected="true" disabled="disabled" >Seleccione una categoria</option>
-				<%
-				List<String> categorias = notas.obtenerCategorias(usuario.getNombre());
-				for (String categoria:categorias){
-					if(categoria!=null){
-				%>
-				<option  class="categoria" value="<%=categoria%>"><%=categoria %></option>
-				<%	
-					}
-				}						
-				%>
+					<option class="categoria" selected="true" disabled="disabled" >Seleccione una categoria</option>
+					<%
+					List<String> categorias = notas.obtenerCategorias(usuario.getNombre());
+					for (String categoria:categorias){
+						if(categoria!=null){
+					%>
+					<option  class="categoria" value="<%=categoria%>"><%=categoria %></option>
+					<%	
+						}
+					}						
+					%>
 				</select>
 				<button id="mas-cat" onclick="nuevaCategoria()">+</button>
 			</div>
 			<div class="color-div">			
 				<strong class="campo">Color</strong>
 				<select id="sel-color" name="color" onchange="cambiarFondoNota(this.value)">
-				<option class="color" selected="true" disabled="disabled" >Seleccione un color</option>
-				<%
-				List<String> colores = notas.obtenerColores(usuario.getNombre());
-				for (String color:colores){
-					if (color!=null){
-				%>
-				<option class="color" value="<%=color%>" onmouseup="<%=color%>"><%=color%></option>
-				<%	
-					}
-				}						
-				%>
+					<option class="color" selected="true" disabled="disabled" >Seleccione un color</option>
+					<%
+					List<String> colores = notas.obtenerColores(usuario.getNombre());
+					for (String color:colores){
+						if (color!=null){
+					%>
+					<option class="color" value="<%=color%>" onmouseup="<%=color%>"><%=color%></option>
+					<%	
+						}
+					}						
+					%>
 				</select>
 				+
 				<input id="color-picker" type="color" oninput="verFondoNota(this.value)" onchange="updateColor(this.value)"></input>				

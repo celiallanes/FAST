@@ -23,11 +23,23 @@
 		<li>
 			<a href="/bloc/usuarios/listarnotas.jsp"><span class="fondo">
 				<span class="textoopcion">Mostrar propias</span>
-			</span></a></li>
+			</span></a>
+		</li>
 		<li>
 			<a href="/bloc/admins/listarnotasTodas.jsp"><span class="fondo">
 				<span class="textoopcion">Mostrar todas</span>
-			</span></a></li>
+			</span></a>
+		</li>
+		<li>
+			<a href=""><span class="fondo">
+				<span class="textoopcion">Gestión de usuarios</span>
+			</span></a>
+		</li>
+		<li>
+			<a href="/bloc/usuarios/revision.jsp"><span class="fondo">
+				<span class="textoopcion">Revisión</span>
+			</span></a>
+		</li>
 		</ol>
 	</div>
 

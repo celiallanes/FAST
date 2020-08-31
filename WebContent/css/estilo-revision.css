@@ -1,0 +1,26 @@
+#tabla-revision {
+	clear: both;
+	text-align: center;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;	
+}
+#tabla-revision tr td,th {	
+  	border: 1pt solid black;
+}
+#tabla-revision tr th{
+	background-color: #a55;
+}
+
+#tabla-revision tr:nth-child(odd) {
+	background-color: lightyellow;
+}
+
+#tabla-revision tr:hover {
+	background-color: khaki;
+}
+
+#tabla-revision tr td.textarea,th.textarea {
+	width: 300px;
+}
