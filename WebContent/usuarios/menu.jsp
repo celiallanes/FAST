@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/bloc/css/estilo.css" />
   </head>
   <body>
-	<jsp:include page="cabecera.jsp" />
+	<jsp:include page="../usuarios/cabecera.jsp" />
 	<div id="menu">
 		<h1>Menú</h1>
 		<ol>
@@ -32,8 +32,6 @@
 		</li>
 		</ol>
 	</div>
-
-
 	<%@include file="../pie.jsp"%>
   </body>
 </html>

@@ -15,7 +15,7 @@ List<Nota> lista = notas.obtenerTitulos(usuario.getNombre());
     <title>Bloc de Notas - FAST: Mostrar notas</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
-    <script src="js/listarnotas.js"></script>
+    <script src="js/listarnotas_editar.js"></script>
   </head>
   <body>	
 	<jsp:include page="cabecera.jsp" />
@@ -30,7 +30,8 @@ List<Nota> lista = notas.obtenerTitulos(usuario.getNombre());
 				%>
 					<tr id='fila-<%=nota.getId()%>'>
 						<td class="infonota">
-							<p><strong class="margen-nota"><%=nota.getTitulo()%></strong></p>
+							<p><input class="seleccion" type="checkbox"  id="nota-<%=nota.getId()%>" onclick="event.stopPropagation()" />
+							<strong class="margen-nota"><%=nota.getTitulo()%></strong></p>
 							<div class='detalle' id='detalle-<%=nota.getId()%>'></div>
 						</td>
 					</tr>
@@ -38,6 +39,10 @@ List<Nota> lista = notas.obtenerTitulos(usuario.getNombre());
 				}
 				%>
 				</table>
+		</div>
+		<div id="botones">
+			<button class="boton" id="boton-borrar-selec"  onclick="borrar_seleccionadas()">BORRAR SELECCIONADAS</button>
+			<button class="boton" id="boton-des-marcar"    onclick="des_marcar_todas()">DESMARCAR TODAS</button>
 		</div>
 	</div>
 	<%@include file="../pie.jsp"%>

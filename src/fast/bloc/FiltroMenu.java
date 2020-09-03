@@ -35,12 +35,15 @@ public class FiltroMenu implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario");
-		
+				
 		if ( usuario.getTipo_usu() == Usuario.ADMINISTRADOR) {
 			req.getRequestDispatcher("admins/menu.jsp").forward(request, response);;
 		} 
-		if ( usuario.getTipo_usu() == Usuario.CLIENTE) {
-			req.getRequestDispatcher("usuarios/menu.jsp").forward(request, response);;
+		if ( usuario.getTipo_usu() == Usuario.CLIENTE &&  usuario.getRol() == Usuario.VISOR_EDITOR) {
+			req.getRequestDispatcher("usuarios/menu_editor.jsp").forward(request, response);;
+		}
+		if ( usuario.getTipo_usu() == Usuario.CLIENTE &&  usuario.getRol() == Usuario.VISOR) {
+			req.getRequestDispatcher("usuarios/menu_visor.jsp").forward(request, response);;
 		}
 	}
 

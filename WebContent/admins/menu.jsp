@@ -21,7 +21,7 @@
 			</span></a>
 		</li>
 		<li>
-			<a href="/bloc/usuarios/listarnotas.jsp"><span class="fondo">
+			<a href="/bloc/usuarios/listarnotas_editar.jsp"><span class="fondo">
 				<span class="textoopcion">Mostrar propias</span>
 			</span></a>
 		</li>
@@ -31,7 +31,7 @@
 			</span></a>
 		</li>
 		<li>
-			<a href=""><span class="fondo">
+			<a href="/bloc/admins/crearusuario.jsp"><span class="fondo">
 				<span class="textoopcion">Gestión de usuarios</span>
 			</span></a>
 		</li>
